@@ -4,7 +4,6 @@
  */
 package bartlomiejfraczak.foodapp.repo.dao;
 
-import bartlomiejfraczak.foodapp.encje.Tekst;
 import bartlomiejfraczak.foodapp.encje.Uzytkownik;
 import bartlomiejfraczak.foodapp.repo.repo.UzytkownikRepo;
 import org.springframework.beans.factory.annotation.Autowired;
