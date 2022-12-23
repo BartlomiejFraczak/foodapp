@@ -48,8 +48,10 @@ public class PrzepisSzczegolowy {
     private float pricePerServing;
     private List<Skladnik> extendedIngredients;
     private String spoonacularSourceUrl;
+    private String notatka;
+    private boolean ulubiony;
 
-    public PrzepisSzczegolowy(int id, String title, int readyInMinutes, int servings, String sourceUrl, String image, String imageType, String summary, List<String> cuisines, List<String> dishTypes, List<String> diets, List<String> occasions, List<String> winePairing, String pairingText, String instructions, boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, boolean lowFodmap, int weightWatcherSmartPoints, String gaps, int preparationMinutes, int cookingMinutes, int aggregateLikes, float healthScore, String creditsText, String license, String sourceName, float pricePerServing, List<Skladnik> extendedIngredients, String spoonacularSourceUrl) {
+    public PrzepisSzczegolowy(int id, String title, int readyInMinutes, int servings, String sourceUrl, String image, String imageType, String summary, List<String> cuisines, List<String> dishTypes, List<String> diets, List<String> occasions, List<String> winePairing, String pairingText, String instructions, boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, boolean lowFodmap, int weightWatcherSmartPoints, String gaps, int preparationMinutes, int cookingMinutes, int aggregateLikes, float healthScore, String creditsText, String license, String sourceName, float pricePerServing, List<Skladnik> extendedIngredients, String spoonacularSourceUrl, String notatka, boolean ulubiony) {
         this.id = id;
         this.title = title;
         this.readyInMinutes = readyInMinutes;
@@ -86,6 +88,8 @@ public class PrzepisSzczegolowy {
         this.pricePerServing = pricePerServing;
         this.extendedIngredients = extendedIngredients;
         this.spoonacularSourceUrl = spoonacularSourceUrl;
+        this.notatka = notatka;
+        this.ulubiony = ulubiony;
     }
 
     public PrzepisSzczegolowy() {
@@ -94,7 +98,7 @@ public class PrzepisSzczegolowy {
 
     @Override
     public String toString() {
-        return "PrzepisSzczegolowy{\n id=" + id + "\n title=" + title + "\n readyInMinutes=" + readyInMinutes + "\n servings=" + servings + "\n sourceUrl=" + sourceUrl + "\n image=" + image + "\n imageType=" + imageType + "\n summary=" + summary + "\n cuisines=" + cuisines + "\n dishTypes=" + dishTypes + "\n diets=" + diets + "\n occasions=" + occasions + "\n pairedWines=" + pairedWines + "\n pairingText=" + pairingText + "\n instructions=" + instructions + "\n vegetarian=" + vegetarian + "\n vegan=" + vegan + "\n glutenFree=" + glutenFree + "\n dairyFree=" + dairyFree + "\n veryHealthy=" + veryHealthy + "\n cheap=" + cheap + "\n veryPopular=" + veryPopular + "\n sustainable=" + sustainable + "\n lowFodmap=" + lowFodmap + "\n weightWatcherSmartPoints=" + weightWatcherSmartPoints + "\n gaps=" + gaps + "\n preparationMinutes=" + preparationMinutes + "\n cookingMinutes=" + cookingMinutes + "\n aggregateLikes=" + aggregateLikes + "\n healthScore=" + healthScore + "\n creditsText=" + creditsText + "\n license=" + license + "\n sourceName=" + sourceName + "\n pricePerServing=" + pricePerServing + "\n extendedIngredients=" + extendedIngredients + "\n spoonacularSourceUrl=" + spoonacularSourceUrl + '}';
+        return "PrzepisSzczegolowy{" + "id=" + id + ", title=" + title + ", readyInMinutes=" + readyInMinutes + ", servings=" + servings + ", sourceUrl=" + sourceUrl + ", image=" + image + ", imageType=" + imageType + ", summary=" + summary + ", cuisines=" + cuisines + ", dishTypes=" + dishTypes + ", diets=" + diets + ", occasions=" + occasions + ", pairedWines=" + pairedWines + ", pairingText=" + pairingText + ", instructions=" + instructions + ", vegetarian=" + vegetarian + ", vegan=" + vegan + ", glutenFree=" + glutenFree + ", dairyFree=" + dairyFree + ", veryHealthy=" + veryHealthy + ", cheap=" + cheap + ", veryPopular=" + veryPopular + ", sustainable=" + sustainable + ", lowFodmap=" + lowFodmap + ", weightWatcherSmartPoints=" + weightWatcherSmartPoints + ", gaps=" + gaps + ", preparationMinutes=" + preparationMinutes + ", cookingMinutes=" + cookingMinutes + ", aggregateLikes=" + aggregateLikes + ", healthScore=" + healthScore + ", creditsText=" + creditsText + ", license=" + license + ", sourceName=" + sourceName + ", pricePerServing=" + pricePerServing + ", extendedIngredients=" + extendedIngredients + ", spoonacularSourceUrl=" + spoonacularSourceUrl + ", notatka=" + notatka + ", ulubiony=" + ulubiony + '}';
     }
 
     public int getId() {
@@ -384,5 +388,31 @@ public class PrzepisSzczegolowy {
     public void setSpoonacularSourceUrl(String spoonacularSourceUrl) {
         this.spoonacularSourceUrl = spoonacularSourceUrl;
     }
+
+    public List<String> getPairedWines() {
+        return pairedWines;
+    }
+
+    public void setPairedWines(List<String> pairedWines) {
+        this.pairedWines = pairedWines;
+    }
+
+    public String getNotatka() {
+        return notatka;
+    }
+
+    public void setNotatka(String notatka) {
+        this.notatka = notatka;
+    }
+
+    public boolean getUlubiony() {
+        return ulubiony;
+    }
+
+    public void setUlubiony(boolean ulubiony) {
+        this.ulubiony = ulubiony;
+    }
+    
+    
 
 }

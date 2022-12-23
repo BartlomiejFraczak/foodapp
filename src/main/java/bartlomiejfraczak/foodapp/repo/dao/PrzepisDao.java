@@ -4,7 +4,7 @@
  */
 package bartlomiejfraczak.foodapp.repo.dao;
 
-import bartlomiejfraczak.foodapp.encje.Ulubiony;
+import bartlomiejfraczak.foodapp.encje.PrzepisInfo;
 import bartlomiejfraczak.foodapp.repo.repo.PrzepisRepo;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +22,13 @@ public class PrzepisDao {
     @Autowired
     private PrzepisRepo repo;
 
-    public void dodaj(Ulubiony ulubiony) {
-        repo.save(ulubiony);
+    public void edytujPrzepisInfo(int uzytkownikId, int przepisId, boolean ulubiony, String notatka) {
+        repo.edytujPrzepisInfo(uzytkownikId, przepisId, ulubiony, notatka);
+    }
+
+    public PrzepisInfo getPrzepisInfo(Integer uzytkownikId, Integer przepisId) {
+//        System.out.println("uzytkownikId: " + uzytkownikId + "\nprzepisId: " + przepisId);
+        return repo.findByUzytkownikIdAndPrzepisId(uzytkownikId, przepisId);
     }
 
     public List<String> ulubioneUzytkownika(Integer id) {
@@ -35,12 +40,12 @@ public class PrzepisDao {
         }
     }
 
-    public boolean czyUzytkownikLubi(Integer uzytkownikId, Integer przepisId) {
-        return repo.czyUzytkownikLubi(uzytkownikId, przepisId);
-    }
-
-    public void usunZUlubionych(Integer uzytkownikId, Integer przepisId) {
-        repo.usunZUlubionych(uzytkownikId, przepisId);
-    }
+//    public boolean czyUzytkownikLubi(Integer uzytkownikId, Integer przepisId) {
+//        return repo.czyUzytkownikLubi(uzytkownikId, przepisId);
+//    }
+//
+//    public void usunZUlubionych(Integer uzytkownikId, Integer przepisId) {
+//        repo.usunZUlubionych(uzytkownikId, przepisId);
+//    }
 
 }

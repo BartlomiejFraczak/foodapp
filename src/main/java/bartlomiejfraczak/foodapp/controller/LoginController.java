@@ -34,13 +34,10 @@ public class LoginController {
     public boolean zarejestruj(
             @RequestBody Uzytkownik uzytkownik
     ) {
-//        System.out.println("LoginController.zarejestruj(): " + uzytkownik.toString());
         if (uzytkownikDao.istniejeUzytkownik(uzytkownik)) {
-//            System.out.println("false tutaj");
             return false;
         } else {
             uzytkownikDao.zarejestruj(uzytkownik);
-//            System.out.println("true tutaj");
             return true;
         }
     }

@@ -209,7 +209,9 @@ public class SpoonacularAPI {
                 obj.optString("sourceName"),
                 obj.optFloat("pricePerServing"),
                 extendedIngredients,
-                obj.optString("spoonacularSourceUrl")
+                obj.optString("spoonacularSourceUrl"),
+                "",
+                false
         );
     }
 
@@ -258,8 +260,7 @@ public class SpoonacularAPI {
         //sort sortDirection 
         System.out.println("url: " + urlSb.toString());
         String json = url2json(urlSb.toString()); //todo
-//        String json = "{\"results\":[{\"id\":1161745,\"title\":\"Cake Balls\",\"image\":\"https://spoonacular.com/recipeImages/1161745-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":636754,\"title\":\"Cake De Naranja\",\"image\":\"https://spoonacular.com/recipeImages/636754-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":636768,\"title\":\"Cake with wine and olive oil oil oil oil oil oil oil oil oil oil oil oil oil oil koniec\",\"image\":\"https://spoonacular.com/recipeImages/636768-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":636766,\"title\":\"Cake with lemon, rosewater and pistachios\",\"image\":\"https://spoonacular.com/recipeImages/636766-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":641745,\"title\":\"Dump Cake\",\"image\":\"https://spoonacular.com/recipeImages/641745-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":656444,\"title\":\"Plum Cake\",\"image\":\"https://spoonacular.com/recipeImages/656444-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":665156,\"title\":\"White Cake With Pear Compote\",\"image\":\"https://spoonacular.com/recipeImages/665156-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":657060,\"title\":\"Pound Cake With Cream Cheese\",\"image\":\"https://spoonacular.com/recipeImages/657060-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":634026,\"title\":\"Banana Cake With Caramel Icing\",\"image\":\"https://spoonacular.com/recipeImages/634026-312x231.jpg\",\"imageType\":\"jpg\"},{\"id\":636324,\"title\":\"Brownie Cake gluten free, dairy free\",\"image\":\"https://spoonacular.com/recipeImages/636324-312x231.jpeg\",\"imageType\":\"jpeg\"}],\"offset\":0,\"number\":10,\"totalResults\":111}\n";
-
+        System.out.println("json: " + json);
         return json2przepis(json);
     }
 

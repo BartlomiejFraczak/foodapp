@@ -5,6 +5,7 @@
 package bartlomiejfraczak.foodapp.controller;
 
 import bartlomiejfraczak.foodapp.encje.Przepis;
+import bartlomiejfraczak.foodapp.encje.PrzepisInfo;
 import bartlomiejfraczak.foodapp.encje.PrzepisSzczegolowy;
 import bartlomiejfraczak.foodapp.encje.Ulubiony;
 import bartlomiejfraczak.foodapp.komunikacja.SpoonacularAPI;
@@ -41,9 +42,21 @@ public class PrzepisController {
 
     @GetMapping("/szczegolowy")
     public PrzepisSzczegolowy getPrzepisSzczegolowy(
-            @RequestParam(required = true) String id
+            @RequestParam(required = true) String przepisId,
+            @RequestParam(required = true) String uzytkownikId
     ) {
-        return SpoonacularAPI.getInstancja().getRecipeInformation(id);
+        PrzepisSzczegolowy przepisSzczegolowy = SpoonacularAPI.getInstancja().getRecipeInformation(przepisId);
+        PrzepisInfo pi = przepisDao.getPrzepisInfo(Integer.valueOf(uzytkownikId), Integer.valueOf(przepisId));
+        if (pi != null) {
+            przepisSzczegolowy.setNotatka(pi.getNotatka());
+            przepisSzczegolowy.setUlubiony(pi.getUlubiony());
+        } else {
+            przepisSzczegolowy.setNotatka("");
+            przepisSzczegolowy.setUlubiony(false);
+        }
+        System.out.println("pi == null: " + (pi == null));
+//        System.out.println("przepisSzczegolowy.getUlubiony: " + przepisSzczegolowy.getUlubiony());
+        return przepisSzczegolowy;
     }
 
     @GetMapping("/ulubione")
@@ -54,29 +67,29 @@ public class PrzepisController {
         return SpoonacularAPI.getInstancja().getRecipeInformationBulk(ids);
     }
 
-    @RequestMapping("/ulubione/dodaj")
-    public void dodajDoUlubionych(
-            @RequestParam(required = true) Integer uzytkownikId,
-            @RequestParam(required = true) Integer przepisId
+    @RequestMapping("/edytujinfo")
+    public void edytujPrzepisInfo(
+            @RequestParam(required = true) int uzytkownikId,
+            @RequestParam(required = true) int przepisId,
+            @RequestParam(required = true) boolean ulubiony,
+            @RequestParam(required = true) String notatka
     ) {
-        przepisDao.dodaj(new Ulubiony(uzytkownikId, przepisId));
-    }
-    
-    @RequestMapping("/ulubione/usun")
-    public void usunZUlubionych(
-            @RequestParam(required = true) Integer uzytkownikId,
-            @RequestParam(required = true) Integer przepisId
-    ) {
-        przepisDao.usunZUlubionych(uzytkownikId, przepisId);
+        przepisDao.edytujPrzepisInfo(uzytkownikId, przepisId, ulubiony, notatka);
     }
 
-    @RequestMapping("/ulubione/czy")
-    public boolean czyUzytkownikLubi(
-            @RequestParam(required = true) Integer uzytkownikId,
-            @RequestParam(required = true) Integer przepisId
-    ){
-        return przepisDao.czyUzytkownikLubi(uzytkownikId, przepisId);
-        
-    }
-    
+//    @RequestMapping("/ulubione/usun")
+//    public void usunZUlubionych(
+//            @RequestParam(required = true) Integer uzytkownikId,
+//            @RequestParam(required = true) Integer przepisId
+//    ) {
+//        przepisDao.usunZUlubionych(uzytkownikId, przepisId);
+//    }
+//    @RequestMapping("/ulubione/czy")
+//    public boolean czyUzytkownikLubi(
+//            @RequestParam(required = true) Integer uzytkownikId,
+//            @RequestParam(required = true) Integer przepisId
+//    ) {
+//        return przepisDao.czyUzytkownikLubi(uzytkownikId, przepisId);
+//
+//    }
 }
