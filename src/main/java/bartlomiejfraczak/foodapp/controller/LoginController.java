@@ -6,6 +6,7 @@ package bartlomiejfraczak.foodapp.controller;
 
 import bartlomiejfraczak.foodapp.encje.Uzytkownik;
 import bartlomiejfraczak.foodapp.repo.dao.UzytkownikDao;
+import bartlomiejfraczak.foodapp.util.Hasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author thefr
  */
 @RestController
-//@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
@@ -26,6 +26,8 @@ public class LoginController {
     public Integer zaloguj(
             @RequestBody Uzytkownik uzytkownik
     ) {
+        String hash = Hasher.getInstancja().hash(uzytkownik.getHasloHash());
+        uzytkownik.setHasloHash(hash);
         return uzytkownikDao.zaloguj(uzytkownik);
 
     }
@@ -34,6 +36,8 @@ public class LoginController {
     public boolean zarejestruj(
             @RequestBody Uzytkownik uzytkownik
     ) {
+        String hash = Hasher.getInstancja().hash(uzytkownik.getHasloHash());
+        uzytkownik.setHasloHash(hash);
         if (uzytkownikDao.istniejeUzytkownik(uzytkownik)) {
             return false;
         } else {

@@ -54,8 +54,6 @@ public class PrzepisController {
             przepisSzczegolowy.setNotatka("");
             przepisSzczegolowy.setUlubiony(false);
         }
-        System.out.println("pi == null: " + (pi == null));
-//        System.out.println("przepisSzczegolowy.getUlubiony: " + przepisSzczegolowy.getUlubiony());
         return przepisSzczegolowy;
     }
 
