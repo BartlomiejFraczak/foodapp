@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bartlomiejfraczak.foodapp.repo.dao;
 
 import bartlomiejfraczak.foodapp.encje.PrzepisInfo;
@@ -27,7 +23,6 @@ public class PrzepisDao {
     }
 
     public PrzepisInfo getPrzepisInfo(Integer uzytkownikId, Integer przepisId) {
-//        System.out.println("uzytkownikId: " + uzytkownikId + "\nprzepisId: " + przepisId);
         return repo.findByUzytkownikIdAndPrzepisId(uzytkownikId, przepisId);
     }
 
@@ -39,13 +34,4 @@ public class PrzepisDao {
             return Arrays.asList(str.split(","));
         }
     }
-
-//    public boolean czyUzytkownikLubi(Integer uzytkownikId, Integer przepisId) {
-//        return repo.czyUzytkownikLubi(uzytkownikId, przepisId);
-//    }
-//
-//    public void usunZUlubionych(Integer uzytkownikId, Integer przepisId) {
-//        repo.usunZUlubionych(uzytkownikId, przepisId);
-//    }
-
 }

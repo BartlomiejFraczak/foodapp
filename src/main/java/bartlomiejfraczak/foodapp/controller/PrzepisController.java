@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bartlomiejfraczak.foodapp.controller;
 
 import bartlomiejfraczak.foodapp.encje.Przepis;
 import bartlomiejfraczak.foodapp.encje.PrzepisInfo;
 import bartlomiejfraczak.foodapp.encje.PrzepisSzczegolowy;
-import bartlomiejfraczak.foodapp.encje.Ulubiony;
 import bartlomiejfraczak.foodapp.komunikacja.SpoonacularAPI;
 import bartlomiejfraczak.foodapp.repo.dao.PrzepisDao;
-import bartlomiejfraczak.foodapp.repo.dao.TekstDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +31,7 @@ public class PrzepisController {
             @RequestParam(required = false) String intolerances,
             @RequestParam(required = false) String includeIngredients
     ) {
-        return SpoonacularAPI.getInstancja().searchRecipes(query, cuisine, diet, intolerances, includeIngredients, true);// cuisine, diet, intolerances, includeIngredients, true);
+        return SpoonacularAPI.getInstancja().searchRecipes(query, cuisine, diet, intolerances, includeIngredients, true);
     }
 
     @GetMapping("/szczegolowy")
@@ -74,20 +68,4 @@ public class PrzepisController {
     ) {
         przepisDao.edytujPrzepisInfo(uzytkownikId, przepisId, ulubiony, notatka);
     }
-
-//    @RequestMapping("/ulubione/usun")
-//    public void usunZUlubionych(
-//            @RequestParam(required = true) Integer uzytkownikId,
-//            @RequestParam(required = true) Integer przepisId
-//    ) {
-//        przepisDao.usunZUlubionych(uzytkownikId, przepisId);
-//    }
-//    @RequestMapping("/ulubione/czy")
-//    public boolean czyUzytkownikLubi(
-//            @RequestParam(required = true) Integer uzytkownikId,
-//            @RequestParam(required = true) Integer przepisId
-//    ) {
-//        return przepisDao.czyUzytkownikLubi(uzytkownikId, przepisId);
-//
-//    }
 }

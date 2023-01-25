@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bartlomiejfraczak.foodapp.komunikacja;
 
 import bartlomiejfraczak.foodapp.config.ConfigReader;
@@ -66,7 +62,6 @@ public class SpoonacularAPI {
             int responseCode = conn.getResponseCode();
 
             if (responseCode != 200) {
-                System.out.println("responseCode != 200");
                 throw new RuntimeException(":( HttpResponseCode: " + responseCode);
             } else {
                 Scanner scanner = new Scanner(url.openStream());
@@ -80,11 +75,10 @@ public class SpoonacularAPI {
         } catch (IOException ex) {
             Logger.getLogger(SpoonacularAPI.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        System.out.println("json: " + json.toString());
         return json.toString();
     }
 
-    private List<Przepis> json2przepis(String json) {
+    private List<Przepis> json2przepisLista(String json) {
         JSONObject obj = new JSONObject(json);
         JSONArray arr = obj.optJSONArray("results");
         List<Przepis> wynik = new ArrayList<>();
@@ -100,7 +94,6 @@ public class SpoonacularAPI {
     }
 
     private PrzepisSzczegolowy json2przepisSzczegolowy(String json) {
-//        System.out.println("json w json2przepisSzczegolowy: " + json);
         List<String> cuisines = new ArrayList<>();
         List<String> dishTypes = new ArrayList<>();
         List<String> diets = new ArrayList<>();
@@ -220,7 +213,6 @@ public class SpoonacularAPI {
         JSONArray arr = new JSONArray(json);
         for (int i = 0; i < arr.length(); i++) {
             wynik.add(json2przepisSzczegolowy(arr.getJSONObject(i).toString()));
-//            System.out.println("json nr " + i + " w json2przepisSzczegolowyLista: " + wynik.get(i));
         }
         return wynik;
     }
@@ -257,11 +249,8 @@ public class SpoonacularAPI {
         urlSb.append("&instructionsRequired=").append(instructionsRequired)
                 .append("&ignorePantry=true")
                 .append("&number=").append(number);
-        //sort sortDirection 
-        System.out.println("url: " + urlSb.toString());
-        String json = url2json(urlSb.toString()); //todo
-        System.out.println("json: " + json);
-        return json2przepis(json);
+        String json = url2json(urlSb.toString());
+        return json2przepisLista(json);
     }
 
     public PrzepisSzczegolowy getRecipeInformation(String id) {
@@ -269,9 +258,7 @@ public class SpoonacularAPI {
         urlSb.append("https://api.spoonacular.com/recipes/")
                 .append(id)
                 .append("/information?apiKey=").append(apiKey);
-//        System.out.println("urlSb w SpoonacularAPI.getRecipeInformation: " + urlSb.toString());
         String json = url2json(urlSb.toString());
-//        System.out.println("json w SpoonacularAPI.getRecipeInformation: " + json);
         return json2przepisSzczegolowy(json);
 
     }
@@ -289,9 +276,7 @@ public class SpoonacularAPI {
             urlSb.append(id).append(",");
         }
         urlSb.deleteCharAt(urlSb.length() - 1);
-//        System.out.println("urlSb w SpoonacularAPI.getRecipeInformationBulk: " + urlSb.toString());
         String json = url2json(urlSb.toString());
-//        System.out.println("json w SpoonacularAPI.getRecipeInformationBulk: " + json);
         return json2przepisSzczegolowyLista(json);
 
     }
